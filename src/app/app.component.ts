@@ -26,9 +26,11 @@ export class AppComponent implements OnInit {
       this.eventOutput += '\n' + JSON.stringify(section) + ',' + JSON.stringify({x, y});
     };
     this.events.ItemClicked = (item) => {
+     // console.log("ITems clicked event ");
       this.eventOutput += '\n' + JSON.stringify(item);
     };
     this.events.ItemContextMenu = (item, {x, y}: MouseEvent) => {
+      // console.log("Coming here 1"+ JSON.stringify(item) + " ," + JSON.stringify({x, y}));
       this.eventOutput += '\n' + JSON.stringify(item) + ',' + JSON.stringify({x, y});
     };
     this.events.ItemDropped = (item) => {
@@ -38,6 +40,10 @@ export class AppComponent implements OnInit {
       this.eventOutput += '\n' + JSON.stringify(start) + ',' + JSON.stringify(end);
     };
 
+    this.events.ItemResizedEnd = (item,start,end)=>{
+      //console.log("Item resize end");
+      this.eventOutput += '\n'  + JSON.stringify(end) + " Item," + JSON.stringify(item);
+    }
     this.periods = [
       {
         name: '2 week',

@@ -43,7 +43,8 @@ export class Text {
 }
 
 export class Events {
-  // ItemResized: (item: Item, start: any, end: any) => void;
+ ItemResizedEnd: (item: Item, start: any, end: any) => void;
+ ItemResizeStart: (item: Item) => void;
   // ItemMovement: (item: Item, start: any, end: any) => void;
   // ItemMovementStart: (item: Item, start: any, end: any) => void;
   // ItemMovementEnd: (item: Item, start: any, end: any) => void;

@@ -47,24 +47,20 @@
                         {{sectionItem.section.name}}
                     </td>
 
-                    <td *ngFor="let td of header[header.length - 1].headerDetails; trackBy: trackByFn" (click)="events.SectionClickEvent ? events.SectionClickEvent(sectionItem.section) : false"></td>
+                    <td *ngFor="let td of header[header.length - 1].headerDetails; trackBy: trackByFn"></td>
                 </tr>
             </table>
 
             <div class="time-sch-section-wrapper" [style.left]="SectionLeftMeasure" cdkDropListGroup>
-
                 <div class="time-sch-section-container" cdkDropList cdkDropListSortingDisabled [cdkDropListData]="sectionItem.section" (cdkDropListDropped)="drop($event)" *ngFor="let sectionItem of sectionItems; trackBy: trackByFn" [style.height]="sectionItem.minRowHeight + 'px'">
-                    <div class="time-sch-item" mwlResizable (resizeStart)="onResizeStart($event,itemMeta)" (resizeEnd)="onResizeEnd($event,itemMeta)" [enableGhostResize]="true" cdkDragBoundary=".time-sch-section-wrapper" [cdkDragData]="itemMeta.item" [cdkDragDisabled]="!allowDragging"
-                        *ngFor="let itemMeta of sectionItem.itemMetas" [ngClass]="itemMeta.item.classes" (click)="events.ItemClicked ? events.ItemClicked(itemMeta.item) : false" (contextmenu)="events.ItemContextMenu ? events.ItemContextMenu(itemMeta.item, $event) : false"
-                        [style.height]="minRowHeight + 'px'" [style.top]="itemMeta.cssTop + 'px'" [style.left]="itemMeta.cssLeft + '%'" [style.width]="itemMeta.cssWidth + '%'">
-                        <!-- <div class="item-drag-placeholder" *cdkDragPlaceholder [style.height]="(minRowHeight - 6) + 'px'" [style.left]="itemMeta.cssLeft + '%'" [style.width]="'calc('+ itemMeta.cssWidth + '% - 6px)'"></div>-->
+                    <div class="time-sch-item" cdkDrag cdkDragLockAxis="y" cdkDragBoundary=".time-sch-section-wrapper" [cdkDragData]="itemMeta.item" [cdkDragDisabled]="!allowDragging" *ngFor="let itemMeta of sectionItem.itemMetas" [ngClass]="itemMeta.item.classes" (click)="events.ItemClicked ? events.ItemClicked(itemMeta.item) : false"
+                        (contextmenu)="events.ItemContextMenu ? events.ItemContextMenu(itemMeta.item, $event) : false" [style.height]="minRowHeight + 'px'" [style.top]="itemMeta.cssTop + 'px'" [style.left]="itemMeta.cssLeft + '%'" [style.width]="itemMeta.cssWidth + '%'">
+                        <div class="item-drag-placeholder" *cdkDragPlaceholder [style.height]="(minRowHeight - 6) + 'px'" [style.left]="itemMeta.cssLeft + '%'" [style.width]="'calc('+ itemMeta.cssWidth + '% - 6px)'"></div>
                         <div class="time-sch-item-start" *ngIf="itemMeta.isStart"></div>
                         <div class="time-sch-item-content" [title]="itemMeta.item.tooltip? itemMeta.item.tooltip : ''">
                             {{itemMeta.item.name}}
                         </div>
-                        <!-- 
-                        <div class="time-sch-item-end" *ngIf="itemMeta.isEnd" (click)="events.ItemClicked ? events.ItemClicked(itemMeta.item) : false" (contextmenu)="events.ItemContextMenu ? events.ItemContextMenu(itemMeta.item, $event) : false"></div> -->
-                        <div class="time-sch-item-end resize-handle-right" mwlResizeHandle [resizeEdges]="{ right: true }"></div>
+                        <div class="time-sch-item-end" *ngIf="itemMeta.isEnd" CdkDragHandle></div>
                     </div>
                 </div>
 

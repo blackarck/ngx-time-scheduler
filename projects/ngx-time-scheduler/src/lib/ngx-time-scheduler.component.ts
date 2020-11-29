@@ -14,6 +14,7 @@ import {
 } from './ngx-time-scheduler.model';
 import * as moment_ from 'moment';
 import {Subscription} from 'rxjs';
+import {ResizeEvent} from 'angular-resizable-element';
 
 const moment = moment_;
 
@@ -32,8 +33,8 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
   @Input() showCurrentTime = true;
   @Input() showGoto = true;
   @Input() showToday = true;
-  @Input() allowDragging = false;
-  // @Input() allowResizing = false;
+  @Input() allowDragging = true;
+  @Input() allowResizing = true;
   @Input() locale = '';
   @Input() showBusinessDayOnly = false;
   @Input() headerFormat = 'Do MMM YYYY';
@@ -58,6 +59,10 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
   header: Header[];
   sectionItems: SectionItem[];
   subscription = new Subscription();
+  sectionwidth=0;
+  prevright=0;
+  currright=0;
+  itemHold: Item[]=[];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -67,6 +72,7 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.transferItem();
     this.setSectionsInSectionItems();
     this.changePeriod(this.periods[0], false);
     this.itemPush();
@@ -76,6 +82,11 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
     this.sectionPop();
     this.sectionRemove();
     this.refresh();
+  }
+
+  transferItem(){
+    //transfer items defined in app to this library
+    this.itemHold=this.items;
   }
 
   refreshView() {
@@ -104,7 +115,9 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
       ele.itemMetas = new Array<ItemMeta>();
       ele.minRowHeight = this.minRowHeight;
 
-      this.items.filter(i => {
+     /* VS we need to manipulate items hence changing it to this library*/
+     // this.items.filter(i => {
+       this.itemHold.filter(i=>{
         let itemMeta = new ItemMeta();
 
         if (i.sectionID === ele.section.id) {
@@ -186,6 +199,7 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
   }
 
   changePeriod(period: Period, userTrigger: boolean = true) {
+     
     this.currentPeriod = period;
     const _start = this.start;
     this.end = moment(_start).add(this.currentPeriod.timeFrameOverall, 'minutes').endOf('day');
@@ -287,7 +301,6 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
   }
 
   drop(event: CdkDragDrop<Section>) {
-    event.item.data.sectionID = event.container.data.id;
     this.refreshView();
     this.events.ItemDropped(event.item.data);
   }
@@ -350,4 +363,59 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
     }
   }
 
+  //VS start 28-nov-2020 new functions to track resizing of the items
+  onResizeEnd(event: ResizeEvent,itemmeta, sectionitem): void {
+    
+   // console.log('Element was resized' +  JSON.stringify(event) + " , itemmeta "+ JSON.stringify(itemmeta) + " , section "+ JSON.stringify(sectionitem));
+    //find out previous and current 
+    this.currright =  Number(event.rectangle.right);
+    let cursorMoved=this.currright- this.prevright;
+    let datesMoved= (cursorMoved/this.sectionwidth);
+    var movedEndDt;
+    //console.log("Units moved "+ Math.ceil(datesMoved));
+    //add end date to itemmeta;
+    for(let i=0;i<=this.itemHold.length;i++){
+      //console.log("Itemhold is "+this.itemHold[i].id)
+      if(this.itemHold[i].id== itemmeta.item.id){
+        //console.log("Found item1- "+this.itemHold[i].end);
+        movedEndDt = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days').endOf('day');
+        this.itemHold[i].end = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days').endOf('day');
+        // console.log("Found item2- "+this.itemHold[i].end);
+        break;
+      }
+    }  
+    //itemmeta.item.end = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days');
+    this.callRefreshwDelay(5);
+    this.events.ItemResizedEnd(itemmeta.item,itemmeta.item.start,movedEndDt);
+  }
+
+  onResizeStart(event: ResizeEvent,itemmeta, sectionitem): void {
+    //console.log('Element start resized' +  JSON.stringify(event) + " , itemmeta "+ JSON.stringify(itemmeta) + " , section "+ JSON.stringify(sectionitem));
+   let dtstart = moment(itemmeta.item.start);
+   let dtend = moment(itemmeta.item.end);
+    
+   //in case the items are ovelapping
+   if(dtstart< this.start){
+    dtstart=this.start;
+   }
+ 
+   let daysinbtween= Number(dtend.diff(dtstart,'days') +1);
+   //console.log("days in between are-"+daysinbtween);
+   let rectwwidth= Number(event.rectangle.width);
+   //console.log("Rect width is "+rectwwidth + " , each sec is "+ (rectwwidth/daysinbtween));
+   //to calculate how far the item was dragged
+   this.sectionwidth=rectwwidth/daysinbtween;
+   this.prevright =  Number(event.rectangle.right);
+   this.events.ItemResizeStart(itemmeta.item);
+  }
+  
+async callRefreshwDelay(ms: number){
+  await this.delay(ms);
+  this.refreshView();
+  }
+
+   delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+//VS end 28-nov-2020 new functions to track resizing of the items
 }
