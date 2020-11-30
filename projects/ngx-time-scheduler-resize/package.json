@@ -1,0 +1,40 @@
+{
+    "name": "ngx-time-scheduler-resize",
+    "version": "1.0.0",
+    "description": "A simple Angular Timeline Scheduler resizable library",
+    "author": {
+        "name": "Vivek Sharma",
+        "email": "blackarck@gmail.com"
+    },
+    "publishConfig": { "registry": "https://registry.npmjs.org/" },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/blackarck/ngx-time-scheduler.git"
+    },
+    "bugs": {
+        "url": "https://github.com/blackarck/ngx-time-scheduler"
+    },
+    "homepage": "https://github.com/blackarck/ngx-time-scheduler",
+    "keywords": [
+        "angular",
+        "time-scheduler",
+        "scheduler",
+        "calender",
+        "typescript",
+        "timeline-scheduler",
+        "calendar-scheduler",
+        "timeline",
+        "ngx-time-scheduler-resize"
+    ],
+    "license": "MIT",
+    "peerDependencies": {
+        "@angular/common": "^9.1.11",
+        "@angular/core": "^9.1.11",
+        "@angular/cdk": "^9.2.4",
+        "moment": "^2.27.0"
+    },
+    "dependencies": {
+        "@angular/cdk": "^9.2.4",
+        "moment": "^2.27.0"
+    }
+}

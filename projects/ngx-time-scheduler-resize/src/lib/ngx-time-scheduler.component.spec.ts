@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NgxTimeSchedulerComponent } from './ngx-time-scheduler.component';
+import { NgxTimeSchedulerResizeComponent } from './ngx-time-scheduler-resize.component';
 
 describe('NgxTimeSchedulerComponent', () => {
-  let component: NgxTimeSchedulerComponent;
-  let fixture: ComponentFixture<NgxTimeSchedulerComponent>;
+  let component: NgxTimeSchedulerResizeComponent;
+  let fixture: ComponentFixture<NgxTimeSchedulerResizeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxTimeSchedulerComponent ]
+      declarations: [ NgxTimeSchedulerResizeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NgxTimeSchedulerComponent);
+    fixture = TestBed.createComponent(NgxTimeSchedulerResizeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

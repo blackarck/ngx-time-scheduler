@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CdkDragDrop} from '@angular/cdk/drag-drop';
-import {NgxTimeSchedulerService} from './ngx-time-scheduler.service';
+import {NgxTimeSchedulerResizeService} from './ngx-time-scheduler-resize.service';
 import {
   HeaderDetails,
   Header,
@@ -11,7 +11,7 @@ import {
   Section,
   Text,
   Events
-} from './ngx-time-scheduler.model';
+} from './ngx-time-scheduler-resize.model';
 import * as moment_ from 'moment';
 import {Subscription} from 'rxjs';
 import {ResizeEvent} from 'angular-resizable-element';
@@ -23,7 +23,7 @@ const moment = moment_;
   templateUrl: './ngx-time-scheduler.component.html',
   styleUrls: ['./ngx-time-scheduler.component.css']
 })
-export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
+export class NgxTimeSchedulerResizeComponent implements OnInit, OnDestroy {
   @ViewChild('sectionTd') set SectionTd(elementRef: ElementRef) {
     this.SectionLeftMeasure = elementRef.nativeElement.clientWidth + 'px';
     this.changeDetector.detectChanges();
@@ -66,7 +66,7 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private service: NgxTimeSchedulerService
+    private service: NgxTimeSchedulerResizeService
   ) {
     moment.locale(this.locale);
   }
@@ -364,7 +364,7 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
   }
 
   //VS start 28-nov-2020 new functions to track resizing of the items
-  onResizeEnd(event: ResizeEvent,itemmeta, sectionitem): void {
+  onResizeEnd(event: ResizeEvent,itemmeta): void {
     
    // console.log('Element was resized' +  JSON.stringify(event) + " , itemmeta "+ JSON.stringify(itemmeta) + " , section "+ JSON.stringify(sectionitem));
     //find out previous and current 
@@ -389,7 +389,7 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
     this.events.ItemResizedEnd(itemmeta.item,itemmeta.item.start,movedEndDt);
   }
 
-  onResizeStart(event: ResizeEvent,itemmeta, sectionitem): void {
+  onResizeStart(event: ResizeEvent,itemmeta): void {
     //console.log('Element start resized' +  JSON.stringify(event) + " , itemmeta "+ JSON.stringify(itemmeta) + " , section "+ JSON.stringify(sectionitem));
    let dtstart = moment(itemmeta.item.start);
    let dtend = moment(itemmeta.item.end);
@@ -406,7 +406,7 @@ export class NgxTimeSchedulerComponent implements OnInit, OnDestroy {
    //to calculate how far the item was dragged
    this.sectionwidth=rectwwidth/daysinbtween;
    this.prevright =  Number(event.rectangle.right);
-   this.events.ItemResizeStart(itemmeta.item);
+  // this.events.ItemResizeStart(itemmeta.item);
   }
   
 async callRefreshwDelay(ms: number){

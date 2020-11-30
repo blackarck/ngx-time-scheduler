@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Item, Period, Section, Events} from '../../projects/ngx-time-scheduler/src/lib/ngx-time-scheduler.model';
-import {NgxTimeSchedulerService} from '../../projects/ngx-time-scheduler/src/lib/ngx-time-scheduler.service';
+import {Item, Period, Section, Events} from '../../projects/ngx-time-scheduler-resize/src/lib/ngx-time-scheduler-resize.model';
+import {NgxTimeSchedulerResizeService} from '../../projects/ngx-time-scheduler-resize/src/lib/ngx-time-scheduler-resize.service';
 import * as moment from 'moment';
 
 @Component({
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   itemCount = 3;
   sectionCount = 10;
 
-  constructor(private service: NgxTimeSchedulerService) {
+  constructor(private service: NgxTimeSchedulerResizeService) {
     this.events.SectionClickEvent = (section) => {
       this.eventOutput += '\n' + JSON.stringify(section);
     };
