@@ -1,18 +1,18 @@
-# Angular Time Scheduler
-[![GitHub issues](https://img.shields.io/github/issues/abhishekjain12/ngx-time-scheduler.svg)](https://github.com/abhishekjain12/ngx-time-scheduler/issues)
-[![GitHub forks](https://img.shields.io/github/forks/abhishekjain12/ngx-time-scheduler.svg)](https://github.com/abhishekjain12/ngx-time-scheduler/network)
-[![GitHub stars](https://img.shields.io/github/stars/abhishekjain12/ngx-time-scheduler.svg)](https://github.com/abhishekjain12/ngx-time-scheduler/stargazers)
-[![GitHub license](https://img.shields.io/github/license/abhishekjain12/ngx-time-scheduler.svg)](https://github.com/abhishekjain12/ngx-time-scheduler/blob/master/LICENSE)
+# Angular Time Scheduler Resize
+[![GitHub issues](https://img.shields.io/github/issues/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/issues)
+[![GitHub forks](https://img.shields.io/github/forks/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/network)
+[![GitHub stars](https://img.shields.io/github/stars/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/stargazers)
+[![GitHub license](https://img.shields.io/github/license/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/blob/master/LICENSE)
 [![latest](https://img.shields.io/npm/v/ngx-time-scheduler/latest.svg)](http://www.npmjs.com/package/ngx-time-scheduler) 
 [![npm](https://img.shields.io/npm/dt/ngx-time-scheduler.svg)](https://www.npmjs.com/packagengx-time-scheduler)
 
-A simple Angular Timeline Scheduler library
+A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging them, this library will publish change to end date.
 
 
 # Installation
 Install via [NPM](https://npmjs.com)
 ```
-npm i ngx-time-scheduler
+npm i ngx-time-scheduler-resize
 ```
 
 
@@ -40,7 +40,6 @@ Use `ngx-ts` in your `app-component.html` template.
   [sections]="sections"
   [events]="events"
   [showBusinessDayOnly]="false"
-  [allowDragging]="true"
 ></ngx-ts>
 ```
 
@@ -190,6 +189,7 @@ Object with properties which create periods that can be used to traverse the cal
 | sectionPop    | `None`           | `void`        | Pop the last section from the existing one.  |
 | sectionRemove | id: number       | `void`        | Remove the section with defined section id from the existing one. |
 | refresh       | `None`           | `void`        | Refresh the scheduler view.  |
+| itemResizedEnd| item:Item,start,end|'void'       | Item's end date has been stretched |
 
 
 # Models
@@ -255,12 +255,8 @@ A selection of events are provided to hook into when creating the scheduler, and
 
 **NOTE:** To prevent the default context menu of the browser, use event.preventDefault() in an event.ItemContextMenu() or event.SectionContextMenuEvent() function.
 
-# Demo
-[Demo](https://abhishekjain12.github.io/ngx-time-scheduler/)
-
-
 # Credits
-This time scheduler is based on the work done by [Zallist](https://github.com/Zallist/TimeScheduler).
+This time scheduler is based on the work done by [Zallist](https://github.com/Zallist/TimeScheduler) & https://github.com/abhishekjain12/ngx-time-scheduler
 
 
 # License
