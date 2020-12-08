@@ -3,8 +3,8 @@
 [![GitHub forks](https://img.shields.io/github/forks/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/network)
 [![GitHub stars](https://img.shields.io/github/stars/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/stargazers)
 [![GitHub license](https://img.shields.io/github/license/blackarck/ngx-time-scheduler.svg)](https://github.com/blackarck/ngx-time-scheduler/blob/master/LICENSE)
-[![latest](https://img.shields.io/npm/v/ngx-time-scheduler/latest.svg)](http://www.npmjs.com/package/ngx-time-scheduler) 
-[![npm](https://img.shields.io/npm/dt/ngx-time-scheduler.svg)](https://www.npmjs.com/packagengx-time-scheduler)
+[![latest](https://img.shields.io/npm/v/ngx-time-scheduler-resize/latest.svg)](https://www.npmjs.com/package/ngx-time-scheduler-resize) 
+[![npm](https://img.shields.io/npm/dt/ngx-time-scheduler-resize.svg)](https://www.npmjs.com/package/ngx-time-scheduler-resize)
 
 A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging and dropping them horizontally. You can drag the end section of the items to extend the end date ( example extending project end date to new end date). This will fire resize end date event. Also added in version 1.2.0 event to trigger a custom context menu for creating new Items.
 
