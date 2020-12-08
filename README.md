@@ -6,7 +6,7 @@
 [![latest](https://img.shields.io/npm/v/ngx-time-scheduler/latest.svg)](http://www.npmjs.com/package/ngx-time-scheduler) 
 [![npm](https://img.shields.io/npm/dt/ngx-time-scheduler.svg)](https://www.npmjs.com/packagengx-time-scheduler)
 
-A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging them, this library will publish change to end date.
+A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging and dropping them horizontally. You can drag the end section of the items to extend the end date ( example extending project end date to new end date). This will fire resize end date event. Also added in version 1.2.0 event to trigger a custom context menu for creating new Items.
 
 
 # Installation
@@ -190,6 +190,7 @@ Object with properties which create periods that can be used to traverse the cal
 | sectionRemove | id: number       | `void`        | Remove the section with defined section id from the existing one. |
 | refresh       | `None`           | `void`        | Refresh the scheduler view.  |
 | itemResizedEnd| item:Item,start,end|'void'       | Item's end date has been stretched |
+| newItemContextMenu | sectionItem, event | 'void' | Right click in case you want to add new item from front end added in version 1.2.0 |
 
 
 # Models
