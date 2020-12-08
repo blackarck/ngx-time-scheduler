@@ -364,6 +364,8 @@ export class NgxTimeSchedulerResizeComponent implements OnInit, OnDestroy {
   }
 
   //VS start 28-nov-2020 new functions to track resizing of the items
+  
+
   onResizeEnd(event: ResizeEvent,itemmeta): void {
     
    // console.log('Element was resized' +  JSON.stringify(event) + " , itemmeta "+ JSON.stringify(itemmeta) + " , section "+ JSON.stringify(sectionitem));
@@ -385,7 +387,7 @@ export class NgxTimeSchedulerResizeComponent implements OnInit, OnDestroy {
       }
     }  
     //itemmeta.item.end = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days');
-    this.callRefreshwDelay(5);
+    this.callRefreshwDelay(10);
     this.events.ItemResizedEnd(itemmeta.item,itemmeta.item.start,movedEndDt);
   }
 

@@ -54,6 +54,7 @@ export class Events {
   SectionClickEvent: (section: Section) => void;
   SectionContextMenuEvent: (section: Section, event: MouseEvent) => void;
   PeriodChange: (start: moment.Moment, end: moment.Moment) => void;
+  newItemContextMenu:(section:Section, event:MouseEvent)=> void;
 }
 
 export class SectionItem {

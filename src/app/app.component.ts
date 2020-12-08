@@ -44,6 +44,10 @@ export class AppComponent implements OnInit {
       //console.log("Item resize end");
       this.eventOutput += '\n'  + JSON.stringify(end) + " Item," + JSON.stringify(item);
     }
+
+    this.events.newItemContextMenu=(section,eventclick)=>{
+      this.eventOutput += '\n' + JSON.stringify(section) + " Event-" + JSON.stringify(eventclick + " "+ eventclick.clientX + ","+eventclick.clientY);
+    }
     this.periods = [
       {
         name: '2 week',
@@ -158,7 +162,7 @@ export class AppComponent implements OnInit {
       classes: ''
     }];
 
-  }
+  }//end of constructors
 
   ngOnInit() {
   }
