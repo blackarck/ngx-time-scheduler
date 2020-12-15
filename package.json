@@ -1,6 +1,6 @@
 {
     "name": "ngx-time-scheduler-resize",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -15,9 +15,9 @@
         "copy_license": "cp ./LICENSE ./dist/ngx-time-scheduler-resize",
         "copy_readme": "cp ./README.md ./dist/ngx-time-scheduler-resize",
         "copy_files": "npm run copy_license && npm run copy_readme",
-        "npm_pack": "cd dist/ngx-time-scheduler && npm pack",
+        "npm_pack": "cd dist/ngx-time-scheduler-resize && npm pack",
         "package": "npm run build_lib && npm run copy_files && npm run npm_pack",
-        "publish": "cd dist/ngx-time-scheduler && npm publish"
+        "publish": "cd dist/ngx-time-scheduler-resize && npm publish"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org/"

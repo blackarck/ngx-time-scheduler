@@ -103,63 +103,72 @@ export class AppComponent implements OnInit {
       name: 'Item 1',
       start: moment().startOf('day'),
       end: moment().add(5, 'days').endOf('day'),
-      classes: ''
+      cstyles:   {'background-color':'green'},
+      classes: '',
     }, {
       id: 2,
       sectionID: 3,
       name: 'Item 2',
       start: moment().startOf('day'),
       end: moment().add(4, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 3,
       sectionID: 1,
       name: 'Item 3',
       start: moment().add(1, 'days').startOf('day'),
       end: moment().add(3, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 4,
       sectionID: 3,
       name: 'Item 4',
       start: moment().add(1, 'days').startOf('day'),
       end: moment().add(3, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 5,
       sectionID: 1,
       name: 'Item 5',
       start: moment().add(7, 'days').startOf('day'),
       end: moment().add(8, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 6,
       sectionID: 1,
       name: 'Item 6',
       start: moment().subtract(3, 'days').startOf('day'),
       end: moment().subtract(1, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 7,
       sectionID: 1,
       name: 'Item 7',
       start: moment().subtract(2, 'days').startOf('day'),
       end: moment().add(2, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 8,
       sectionID: 1,
       name: 'Item 8',
       start: moment().add(3, 'days').startOf('day'),
       end: moment().add(7, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }, {
       id: 9,
       sectionID: 1,
       name: 'Item 9',
       start: moment().subtract(2, 'days').startOf('day'),
       end: moment().add(7, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     }];
 
   }//end of constructors
@@ -175,7 +184,8 @@ export class AppComponent implements OnInit {
       name: 'Item ' + this.itemCount,
       start: moment().startOf('day'),
       end: moment().add(3, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
     });
   }
 

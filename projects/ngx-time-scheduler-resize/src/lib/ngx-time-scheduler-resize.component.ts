@@ -10,7 +10,7 @@ import {
   SectionItem,
   Section,
   Text,
-  Events
+  Events,
 } from './ngx-time-scheduler-resize.model';
 import * as moment_ from 'moment';
 import {Subscription} from 'rxjs';
