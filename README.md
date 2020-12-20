@@ -6,7 +6,9 @@
 [![latest](https://img.shields.io/npm/v/ngx-time-scheduler-resize/latest.svg)](https://www.npmjs.com/package/ngx-time-scheduler-resize) 
 [![npm](https://img.shields.io/npm/dt/ngx-time-scheduler-resize.svg)](https://www.npmjs.com/package/ngx-time-scheduler-resize)
 
-A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging and dropping them horizontally. You can drag the end section of the items to extend the end date ( example extending project end date to new end date). This will fire resize end date event. Also added in version 1.2.0 event to trigger a custom context menu for creating new Items.
+A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging and dropping them horizontally. You can drag the end section of the items to extend the end date ( example extending project end date to new end date). This will fire resize end date event. Also added
+1. In version 1.2.0 event to trigger a custom context menu for creating new Items.
+2. In versions upto 1.5.0 Custom data can be added to data items, click event to items facilitating manupulation of items, custom styles can be added to data items giving user flexibility to add custom styles to data items.
 
 
 # Installation
