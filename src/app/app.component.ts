@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
     this.events.SectionContextMenuEvent = (section, {x, y}: MouseEvent) => {
       this.eventOutput += '\n' + JSON.stringify(section) + ',' + JSON.stringify({x, y});
     };
-    this.events.ItemClicked = (item) => {
+    this.events.ItemClicked = (item, event) => {
      // console.log("ITems clicked event ");
-      this.eventOutput += '\n' + JSON.stringify(item);
+      this.eventOutput += '\n' + JSON.stringify(item) +  " ," + event.clientX;
     };
     this.events.ItemContextMenu = (item, {x, y}: MouseEvent) => {
       // console.log("Coming here 1"+ JSON.stringify(item) + " ," + JSON.stringify({x, y}));
@@ -105,6 +105,7 @@ export class AppComponent implements OnInit {
       end: moment().add(5, 'days').endOf('day'),
       cstyles:   {'background-color':'green'},
       classes: '',
+      cstdata: '',
     }, {
       id: 2,
       sectionID: 3,
@@ -113,6 +114,7 @@ export class AppComponent implements OnInit {
       end: moment().add(4, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 3,
       sectionID: 1,
@@ -121,6 +123,7 @@ export class AppComponent implements OnInit {
       end: moment().add(3, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 4,
       sectionID: 3,
@@ -129,6 +132,7 @@ export class AppComponent implements OnInit {
       end: moment().add(3, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 5,
       sectionID: 1,
@@ -137,6 +141,7 @@ export class AppComponent implements OnInit {
       end: moment().add(8, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 6,
       sectionID: 1,
@@ -145,6 +150,7 @@ export class AppComponent implements OnInit {
       end: moment().subtract(1, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 7,
       sectionID: 1,
@@ -153,6 +159,7 @@ export class AppComponent implements OnInit {
       end: moment().add(2, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 8,
       sectionID: 1,
@@ -161,6 +168,7 @@ export class AppComponent implements OnInit {
       end: moment().add(7, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     }, {
       id: 9,
       sectionID: 1,
@@ -169,6 +177,7 @@ export class AppComponent implements OnInit {
       end: moment().add(7, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: {'cstname':'thiscomponent','role':'developer'},
     }];
 
   }//end of constructors
@@ -186,6 +195,7 @@ export class AppComponent implements OnInit {
       end: moment().add(3, 'days').endOf('day'),
       classes: '',
       cstyles:'',
+      cstdata: '',
     });
   }
 

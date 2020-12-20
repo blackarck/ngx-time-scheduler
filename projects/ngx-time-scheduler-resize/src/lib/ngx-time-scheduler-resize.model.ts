@@ -19,6 +19,7 @@ export class Item {
   sectionID: number;
   tooltip?: string;
   cstyles: any;
+  cstdata: any;
 }
 
 export class Section {
@@ -50,7 +51,7 @@ export class Events {
   // ItemMovementStart: (item: Item, start: any, end: any) => void;
   // ItemMovementEnd: (item: Item, start: any, end: any) => void;
   ItemDropped: (item: Item) => void;
-  ItemClicked: (item: Item) => void;
+  ItemClicked: (item: Item, event:MouseEvent) => void;
   ItemContextMenu: (item: Item, event: MouseEvent) => void;
   SectionClickEvent: (section: Section) => void;
   SectionContextMenuEvent: (section: Section, event: MouseEvent) => void;
