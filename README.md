@@ -6,8 +6,12 @@
 [![latest](https://img.shields.io/npm/v/ngx-time-scheduler-resize/latest.svg)](https://www.npmjs.com/package/ngx-time-scheduler-resize) 
 [![npm](https://img.shields.io/npm/dt/ngx-time-scheduler-resize.svg)](https://www.npmjs.com/package/ngx-time-scheduler-resize)
 
-A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging and dropping them horizontally. You can drag the end section of the items to extend the end date ( example extending project end date to new end date). This will fire resize end date event. Also added in version 1.2.0 event to trigger a custom context menu for creating new Items.
+A simple Angular Timeline Scheduler Resizable library, extension of library at https://github.com/abhishekjain12/ngx-time-scheduler. Added functionality to resize the items instead of dragging and dropping them horizontally. You can drag the end section of the items to extend the end date ( example extending project end date to new end date). This will fire resize end date event.  
+Also added
 
+ 1. Version 1.2.0 event to trigger a custom context menu for creating new Items.
+ 2. Version 1.5.0 Custom data can be added to data items, click event to items facilitating manupulation of items, custom styles can be added to data items giving user flexibility to add custom styles to data items.
+ 3. Version 1.6.0 Added function to smooth out resizing of items.
 
 # Installation
 Install via [NPM](https://npmjs.com)
@@ -17,14 +21,14 @@ npm i ngx-time-scheduler-resize
 
 
 # Getting Started
-Import the `NgxTimeSchedulerModule` in your app module.
+Import the `NgxTimeSchedulerResizeModule` in your app module.
 ```typescript
-import {NgxTimeSchedulerModule} from 'ngx-time-scheduler';
+import {NgxTimeSchedulerResizeModule} from 'ngx-time-scheduler-resize';
 
 @NgModule({
   imports: [
     BrowserModule,
-    NgxTimeSchedulerModule,
+    NgxTimeSchedulerResizeModule,
     ...
   ],
   ...
@@ -46,7 +50,7 @@ Use `ngx-ts` in your `app-component.html` template.
 And in your `app.component.ts` component class:
 ```typescript
 import {Component, OnInit} from '@angular/core';
-import {Item, Period, Section, Events, NgxTimeSchedulerService} from 'ngx-time-scheduler';
+import {Item, Period, Section, Events, NgxTimeSchedulerResizeService} from 'ngx-time-scheduler-resize';
 import * as moment from 'moment';
 
 @Component({
@@ -113,21 +117,27 @@ export class AppComponent implements OnInit {
       name: 'Item 1',
       start: moment().startOf('day'),
       end: moment().add(5, 'days').endOf('day'),
-      classes: ''
+      cstyles:   {'background-color':'green'}, //pass your own styles here
+      classes: '',  
+      cstdata: '', //pass your own custom data here application does not use this
     }, {
       id: 2,
       sectionID: 3,
       name: 'Item 2',
       start: moment().startOf('day'),
       end: moment().add(4, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
+      cstdata: '',
     }, {
       id: 3,
       sectionID: 1,
       name: 'Item 3',
       start: moment().add(1, 'days').startOf('day'),
       end: moment().add(3, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
+      cstdata: '',
     }];
 
   }
@@ -139,7 +149,9 @@ export class AppComponent implements OnInit {
       name: 'Item 4',
       start: moment().startOf('day'),
       end: moment().add(3, 'days').endOf('day'),
-      classes: ''
+      classes: '',
+      cstyles:'',
+      cstdata: '',
     });
   }
 
@@ -193,6 +205,7 @@ Object with properties which create periods that can be used to traverse the cal
 | newItemContextMenu | sectionItem, event | 'void' | Right click in case you want to add new item from front end added in version 1.2.0 |
 
 
+
 # Models
 
 #### Period
@@ -229,6 +242,8 @@ Items used to fill the scheduler.
 | classes   | string | Yes      | `null`  | Any css classes you wish to add to this item. |
 | sectionID | number | Yes      | `null`  | The ID of the section that this item belongs to. |
 | tooltip   | string | No       | `null`  | It is use to display tooltip for the section. |
+| cstyles   | any    | No       | `null`  | It is used to pass styles to the item |
+| csdata    | any    | No       | `null`  | Pass custom data |
 
 #### Text
 An object containing the text use in the scheduler, to be easily customized.
@@ -252,7 +267,6 @@ A selection of events are provided to hook into when creating the scheduler, and
 | SectionContextMenuEvent | section: Section, event: MouseEvent      | void          | Triggered when a section is righted click (Context Menu). |
 | ItemDropped             | item: Item                               | void          | Triggered when an item is dropped onto a section. `item` is the new data after the action. |
 | PeriodChange            | start: moment.Moment, end: moment.Moment | void          | Triggered when an period is change. |
-
 
 **NOTE:** To prevent the default context menu of the browser, use event.preventDefault() in an event.ItemContextMenu() or event.SectionContextMenuEvent() function.
 

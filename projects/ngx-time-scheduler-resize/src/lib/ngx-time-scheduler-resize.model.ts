@@ -18,8 +18,8 @@ export class Item {
   classes: string;
   sectionID: number;
   tooltip?: string;
-  cstyles: any;
-  cstdata: any;
+  cstyles?: any;
+  cstdata?: any;
 }
 
 export class Section {

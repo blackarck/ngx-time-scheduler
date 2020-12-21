@@ -364,9 +364,7 @@ export class NgxTimeSchedulerResizeComponent implements OnInit, OnDestroy {
   }
 
   //VS start 28-nov-2020 new functions to track resizing of the items
-  
-
-  onResizeEnd(event: ResizeEvent,itemmeta): void {
+  async onResizeEnd(event: ResizeEvent,itemmeta) {
     
    // console.log('Element was resized' +  JSON.stringify(event) + " , itemmeta "+ JSON.stringify(itemmeta) + " , section "+ JSON.stringify(sectionitem));
     //find out previous and current 
@@ -376,19 +374,28 @@ export class NgxTimeSchedulerResizeComponent implements OnInit, OnDestroy {
     var movedEndDt;
     //console.log("Units moved "+ Math.ceil(datesMoved));
     //add end date to itemmeta;
-    for(let i=0;i<=this.itemHold.length;i++){
-      //console.log("Itemhold is "+this.itemHold[i].id)
-      if(this.itemHold[i].id== itemmeta.item.id){
-        //console.log("Found item1- "+this.itemHold[i].end);
-        movedEndDt = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days').endOf('day');
-        this.itemHold[i].end = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days').endOf('day');
-        // console.log("Found item2- "+this.itemHold[i].end);
-        break;
-      }
-    }  
-    //itemmeta.item.end = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days');
-    this.callRefreshwDelay(10);
+    await this.calcEndLoction(itemmeta,datesMoved);
     this.events.ItemResizedEnd(itemmeta.item,itemmeta.item.start,movedEndDt);
+  }
+
+  async calcEndLoction(itemmeta,datesMoved){
+    return new Promise(  (res, rej)  => {
+      var movedEndDt;
+      for(let i=0;i<=this.itemHold.length;i++){
+        //console.log("Itemhold is "+this.itemHold[i].id)
+        if(this.itemHold[i].id== itemmeta.item.id){
+          //console.log("Found item1- "+this.itemHold[i].end);
+          movedEndDt = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days').endOf('day');
+          this.itemHold[i].end = moment(itemmeta.item.end).add(Math.ceil(datesMoved),'days').endOf('day');
+          // console.log("Found item2- "+this.itemHold[i].end);
+          break;
+        }//end of if
+      }//end of for  
+      this.refreshView();
+      //console.log("Calculation done");
+      res({'status':'done'})
+    });
+
   }
 
   onResizeStart(event: ResizeEvent,itemmeta): void {
@@ -410,14 +417,6 @@ export class NgxTimeSchedulerResizeComponent implements OnInit, OnDestroy {
    this.prevright =  Number(event.rectangle.right);
   // this.events.ItemResizeStart(itemmeta.item);
   }
-  
-async callRefreshwDelay(ms: number){
-  await this.delay(ms);
-  this.refreshView();
-  }
 
-   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
 //VS end 28-nov-2020 new functions to track resizing of the items
 }

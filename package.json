@@ -1,6 +1,6 @@
 {
     "name": "ngx-time-scheduler-resize",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -11,7 +11,7 @@
         "postinstall": "ngcc",
         "ng:build:demo": "ng build --aot --prod --base-href=https://blackarck.github.io/ngx-time-scheduler/",
         "deploy": "npm run ng:build:demo && gh-pages -d dist/demo",
-        "build_lib": "ng build NgxTimeSchedulerResize",
+        "build_lib": "ng build NgxTimeSchedulerResize --prod",
         "copy_license": "cp ./LICENSE ./dist/ngx-time-scheduler-resize",
         "copy_readme": "cp ./README.md ./dist/ngx-time-scheduler-resize",
         "copy_files": "npm run copy_license && npm run copy_readme",
